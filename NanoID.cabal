@@ -19,9 +19,9 @@ source-repository head
 
 library
   exposed-modules:     Data.NanoID
-  build-depends:       base >=4.7 && <4.15
+  build-depends:       base       >=4.7 && < 4.16
                      , bytestring >= 0.10 && < 0.12
-                     , extra >= 1.6 && < 1.8
+                     , extra      >= 1.6 && < 1.8
                      , mwc-random >= 0.13 && < 0.16
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -29,9 +29,9 @@ library
 executable nanoid
   main-is:             Main.hs
   other-modules:       Options
-  build-depends:       base >=4.7 && <4.15
-                     , bytestring >= 0.10 && < 0.12
-                     , mwc-random >= 0.13 && < 0.16
+  build-depends:       base                 >=4.7 && < 4.16
+                     , bytestring           >= 0.10 && < 0.12
+                     , mwc-random           >= 0.13 && < 0.16
                      , NanoID
                      , optparse-applicative >= 0.14 && < 0.17
   hs-source-dirs:      app
