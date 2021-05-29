@@ -1,4 +1,4 @@
-# NanoID generator, library and CLI tool [![Build Status](https://travis-ci.org/MichelBoucey/NanoID.svg?branch=master)](https://travis-ci.org/MichelBoucey/NanoID)
+# NanoID generator, library and CLI tool [![Build Status](https://travis-ci.org/MichelBoucey/NanoID.svg?branch=main)](https://travis-ci.org/github/MichelBoucey/NanoID)
 
 ```
 [user@box ~] $ nanoid -h
