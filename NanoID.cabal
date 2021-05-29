@@ -1,5 +1,5 @@
 name:                NanoID
-version:             1.0.0
+version:             1.0.1
 synopsis:            NanoID generator
 description:         Library and CLI tool for NanoID generation
 license:             BSD3
