@@ -2,6 +2,7 @@
 
 import           Control.Monad
 import qualified Data.ByteString.Char8 as C
+import           Data.Either
 import           Options.Applicative
 import           System.Exit
 import           System.Random.MWC
@@ -17,8 +18,9 @@ main = do
     else do
       let alphabet' = Alphabet { unAlphabet = C.pack alphabet }
       replicateM_ quantity $
-        unNanoID <$> (createSystemRandom >>= customNanoID alphabet' length) >>= putNanoID newline
+        createSystemRandom >>= customNanoID alphabet' length >>= putNanoID newline
       exitSuccess
-      where
-        putNanoID n = if n then C.putStrLn else C.putStr
+        where
+          putNanoID nl = either (put nl . C.pack) (put nl . unNanoID)
+            where put nl = if nl then C.putStrLn else C.putStr
 

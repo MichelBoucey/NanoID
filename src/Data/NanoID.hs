@@ -13,12 +13,15 @@ type Length = Int
 defaultAlphabet :: Alphabet
 defaultAlphabet = Alphabet (C.pack "ABCDEFGHIJKLMNOPKRSTUVWXYZ_-abcdefghijklmnopqrstuvwxyz")
 
-nanoID :: IO NanoID
+nanoID :: IO (Either String NanoID)
 nanoID = createSystemRandom >>= customNanoID defaultAlphabet 21
 
-customNanoID :: Alphabet -> Length -> GenIO-> IO NanoID
-customNanoID a l g = do
-  let acs = unAlphabet a
-      al = C.length acs
-  NanoID . C.pack <$> replicateM l ((\r -> C.index acs (r-1)) <$> uniformR (1,al) g)
+customNanoID :: Alphabet -> Length -> GenIO-> IO (Either String NanoID)
+customNanoID a l g =
+  if l > 21
+    then return (Left "The length of NanoID is less or equal to 21")
+    else do
+      let acs = unAlphabet a
+          al = C.length acs
+      pure . NanoID . C.pack <$> replicateM l ((\r -> C.index acs (r-1)) <$> uniformR (1,al) g)
 
