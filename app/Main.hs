@@ -13,12 +13,12 @@ import           Options
 main :: IO ()
 main = do
   Options{..} <- execParser opts
-  if length > 21
-    then putStrLn "The length of NanoID is less or equal to 21" >> exitFailure
+  if length < 1 
+    then putStrLn "Strange (nano)idea... less than char" >> exitFailure
     else do
       let alphabet' = Alphabet { unAlphabet = C.pack alphabet }
       replicateM_ quantity $
-        createSystemRandom >>= customNanoID alphabet' length >>= putNanoID newline
+        createSystemRandom >>= customNanoID alphabet' (Just length) >>= putNanoID newline
       exitSuccess
         where
           putNanoID nl = either (put nl . C.pack) (put nl . unNanoID)
