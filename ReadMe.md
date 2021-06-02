@@ -2,7 +2,7 @@
 
 ```
 [user@box ~] $ nanoid -h
-nanoid v1.0.1, (c) Michel Boucey 2021
+nanoid v2.0.0, (c) Michel Boucey 2021
 
 Usage: nanoid [-a|--alphabet ARG] [-l|--length ARG] [-q|--quantity ARG] 
               [-n|--newline]
