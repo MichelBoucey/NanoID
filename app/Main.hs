@@ -14,7 +14,7 @@ main :: IO ()
 main = do
   Options{..} <- execParser opts
   if length < 1 
-    then putStrLn "Strange (nano)idea... less than char" >> exitFailure
+    then putStrLn "Strange (nano)idea... less than one char" >> exitFailure
     else do
       let alphabet' = Alphabet { unAlphabet = C.pack alphabet }
       replicateM_ quantity $
