@@ -15,16 +15,19 @@ nanoID :: IO (Either String NanoID)
 nanoID = createSystemRandom >>= customNanoID defaultAlphabet Nothing
 
 customNanoID :: Alphabet -> Maybe Length -> GenIO-> IO (Either String NanoID)
-customNanoID a l g =
+customNanoID a l g = do
+  let l' = fromMaybe 21 l
+  when (l' < 1) (fail "Negative length for a NanoID")
   let ua = unAlphabet a
-      al = C.length ua in
-  pure . NanoID . C.pack <$> replicateM (fromMaybe 21 l) ((\r -> C.index ua (r-1)) <$> uniformR (1,al) g)
+      al = C.length ua
+  pure . NanoID . C.pack <$> replicateM l' ((\r -> C.index ua (r-1)) <$> uniformR (1,al) g)
 
 -- | The default 'Alphabet', made of URL-friendly symbols.
 defaultAlphabet :: Alphabet
 defaultAlphabet = Alphabet (C.pack "ABCDEFGHIJKLMNOPKRSTUVWXYZ_1234567890-abcdefghijklmnopqrstuvwxyz")
 
--- | Predefined 'Alphabet's borrowed from <https://github.com/CyberAP/nanoid-dictionary>
+-- * Predefined Alphabets borrowed from https://github.com/CyberAP/nanoid-dictionary
+
 numbers :: Alphabet
 numbers = Alphabet (C.pack "1234567890")
 

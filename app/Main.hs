@@ -13,8 +13,8 @@ import           Options
 main :: IO ()
 main = do
   Options{..} <- execParser opts
-  if length < 1 
-    then putStrLn "Strange (nano)idea... less than one char" >> exitFailure
+  if length < 1 || quantity < 1
+    then putStrLn "Bad numeric input. See help (-h)." >> exitFailure
     else do
       let alphabet' = Alphabet { unAlphabet = C.pack alphabet }
       replicateM_ quantity $
