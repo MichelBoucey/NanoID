@@ -13,14 +13,17 @@ import           Options
 main :: IO ()
 main = do
   Options{..} <- execParser opts
-  if length < 1 || quantity < 1
-    then putStrLn "Bad numeric input. See help (-h)." >> exitFailure
-    else do
-      let alphabet' = Alphabet { unAlphabet = C.pack alphabet }
-      replicateM_ quantity $
-        createSystemRandom >>= customNanoID alphabet' (Just length) >>= putNanoID newline
-      exitSuccess
-        where
-          putNanoID nl = either (put nl . C.pack) (put nl . unNanoID)
-            where put nl = if nl then C.putStrLn else C.putStr
+  if length < 1
+    then strFail "nanoid length"
+    else if quantity < 1
+      then strFail "quantity"
+      else do
+        let alphabet' = Alphabet { unAlphabet = C.pack alphabet }
+        replicateM_ quantity $
+          createSystemRandom >>= customNanoID alphabet' (toEnum length) >>= putNanoID newline
+        exitSuccess
+  where
+    strFail m = putStrLn ("Bad " <> m <> ". See help (-h).") >> exitFailure
+    putNanoID nl = put nl . unNanoID
+      where put nl = if nl then C.putStrLn else C.putStr
 

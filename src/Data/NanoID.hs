@@ -3,24 +3,33 @@ module Data.NanoID where
 import           Control.Monad
 import qualified Data.ByteString.Char8 as C
 import           Data.Maybe
+import           Numeric.Natural
 import           System.Random.MWC
 
 newtype NanoID = NanoID { unNanoID :: C.ByteString } deriving (Eq, Show)
 
 newtype Alphabet = Alphabet { unAlphabet :: C.ByteString } deriving (Eq, Show)
 
-type Length = Int
+type Length = Natural
 
-nanoID :: IO (Either String NanoID)
-nanoID = createSystemRandom >>= customNanoID defaultAlphabet Nothing
+-- | Standard 'NanoID' generator function
+-- >λ: g <- createSystemRandom
+-- >λ: NanoID g
+-- >NanoID {unNanoID = "x2f8yFadImeVp14ByJ8R3"}
+--
+nanoID :: GenIO -> IO NanoID
+nanoID = customNanoID defaultAlphabet 21
 
-customNanoID :: Alphabet -> Maybe Length -> GenIO-> IO (Either String NanoID)
-customNanoID a l g = do
-  let l' = fromMaybe 21 l
-  when (l' < 1) (fail "Negative length for a NanoID")
-  let ua = unAlphabet a
-      al = C.length ua
-  pure . NanoID . C.pack <$> replicateM l' ((\r -> C.index ua (r-1)) <$> uniformR (1,al) g)
+-- | Customable 'NanoID' generator function
+customNanoID :: Alphabet  -- ^ An 'Alphabet' of your choice
+             -> Length    -- ^ A 'NanoID' length (the standard length is 21 chars)
+             -> GenIO     -- ^ The pseudo-random number generator state
+             -> IO NanoID
+customNanoID a l g =
+  NanoID . C.pack <$> replicateM (fromEnum l) ((\r -> C.index ua (r-1)) <$> uniformR (1,al) g)
+  where
+    ua = unAlphabet a
+    al = C.length ua
 
 -- | The default 'Alphabet', made of URL-friendly symbols.
 defaultAlphabet :: Alphabet
