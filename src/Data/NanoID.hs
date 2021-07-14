@@ -13,6 +13,7 @@ newtype Alphabet = Alphabet { unAlphabet :: C.ByteString } deriving (Eq, Show)
 type Length = Natural
 
 -- | Standard 'NanoID' generator function
+--
 -- >λ: g <- createSystemRandom
 -- >λ: NanoID g
 -- >NanoID {unNanoID = "x2f8yFadImeVp14ByJ8R3"}
