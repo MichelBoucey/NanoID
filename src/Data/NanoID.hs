@@ -1,16 +1,37 @@
+{-# LANGUAGE DeriveGeneric #-}
+
 module Data.NanoID where
 
 import           Control.Monad
+import           Data.Aeson
 import qualified Data.ByteString.Char8 as C
 import           Data.Maybe
+import           Data.Serialize        (Serialize)
+import           Data.Text.Encoding
+import           GHC.Generics
 import           Numeric.Natural
 import           System.Random.MWC
 
-newtype NanoID = NanoID { unNanoID :: C.ByteString } deriving (Eq, Show)
+newtype NanoID = NanoID { unNanoID :: C.ByteString } deriving (Eq,Generic)
 
-newtype Alphabet = Alphabet { unAlphabet :: C.ByteString } deriving (Eq, Show)
+newtype Alphabet = Alphabet { unAlphabet :: C.ByteString } deriving (Eq)
 
 type Length = Natural
+
+instance Show NanoID where
+  show n = C.unpack (unNanoID n)
+
+instance Show Alphabet where
+  show a = C.unpack (unAlphabet a)
+
+instance ToJSON NanoID where
+  toJSON n = String (decodeUtf8 $ unNanoID n)
+
+instance FromJSON NanoID where
+  parseJSON (String s) = pure (NanoID $ encodeUtf8 s)
+  parseJSON _          = fail "A JSON String is expected to convert to NanoID"
+
+instance Serialize NanoID
 
 -- | Standard 'NanoID' generator function
 --
