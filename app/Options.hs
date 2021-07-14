@@ -16,7 +16,7 @@ opts :: ParserInfo Options
 opts = info (options <**> helper)
   ( fullDesc
     <> progDesc "NanoID generator"
-    <> header "nanoid v2.1.0, (c) Michel Boucey 2021" )
+    <> header "nanoid v3.0.0, (c) Michel Boucey 2021" )
 
 options :: Parser Options
 options =
