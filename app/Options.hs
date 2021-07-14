@@ -31,7 +31,7 @@ options =
       option auto
         ( short 'l'
           <> long "length"
-          <> help "Get shorter NanoID"
+          <> help "Default NanoID length is 21 chars"
           <> value 21 )
     <*>
       option auto
