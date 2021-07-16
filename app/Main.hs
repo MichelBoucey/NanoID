@@ -17,11 +17,11 @@ main = do
     then strFail "nanoid length"
     else if quantity < 1
       then strFail "quantity"
-      else do
-        let alphabet' = Alphabet { unAlphabet = C.pack alphabet }
+      else
         replicateM_ quantity $
-          createSystemRandom >>= customNanoID alphabet' (toEnum length) >>= putNanoID newline
-        exitSuccess
+          createSystemRandom
+            >>= customNanoID (toAlphabet alphabet) (toEnum length)
+            >>= putNanoID newline >> exitSuccess
   where
     strFail m = putStrLn ("Bad " <> m <> ". See help (-h).") >> exitFailure
     putNanoID nl = put nl . unNanoID

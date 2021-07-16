@@ -33,11 +33,15 @@ instance FromJSON NanoID where
 
 instance Serialize NanoID
 
+-- | Create a new 'Alphabet' from a string of symbols of your choice
+toAlphabet :: String -> Alphabet
+toAlphabet = Alphabet . C.pack
+
 -- | Standard 'NanoID' generator function
 --
 -- >λ: g <- createSystemRandom
 -- >λ: NanoID g
--- >NanoID {unNanoID = "x2f8yFadImeVp14ByJ8R3"}
+-- >x2f8yFadIm-Vp14ByJ8R3
 --
 nanoID :: GenIO -> IO NanoID
 nanoID = customNanoID defaultAlphabet 21
@@ -55,31 +59,31 @@ customNanoID a l g =
 
 -- | The default 'Alphabet', made of URL-friendly symbols.
 defaultAlphabet :: Alphabet
-defaultAlphabet = Alphabet (C.pack "ABCDEFGHIJKLMNOPKRSTUVWXYZ_1234567890-abcdefghijklmnopqrstuvwxyz")
+defaultAlphabet = toAlphabet "ABCDEFGHIJKLMNOPKRSTUVWXYZ_1234567890-abcdefghijklmnopqrstuvwxyz"
 
 -- * Predefined Alphabets borrowed from https://github.com/CyberAP/nanoid-dictionary
 
 numbers :: Alphabet
-numbers = Alphabet (C.pack "1234567890")
+numbers = toAlphabet "1234567890"
 
 hexadecimalLowercase :: Alphabet
-hexadecimalLowercase = Alphabet (C.pack "0123456789abcdef")
+hexadecimalLowercase = toAlphabet "0123456789abcdef"
 
 hexadecimalUppercase :: Alphabet
-hexadecimalUppercase = Alphabet (C.pack "0123456789ABCDEF")
+hexadecimalUppercase = toAlphabet "0123456789ABCDEF"
 
 lowercase :: Alphabet
-lowercase = Alphabet (C.pack "abcdefghijklmnopqrstuvwxyz")
+lowercase = toAlphabet "abcdefghijklmnopqrstuvwxyz"
 
 uppercase :: Alphabet
-uppercase = Alphabet (C.pack "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+uppercase = toAlphabet "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 alphanumeric :: Alphabet
-alphanumeric = Alphabet (C.pack "ABCDEFGHIJKLMNOPKRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz")
+alphanumeric = toAlphabet "ABCDEFGHIJKLMNOPKRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz"
 
 nolookalikes :: Alphabet
-nolookalikes = Alphabet (C.pack "346789ABCDEFGHJKLMNPQRTUVWXYabcdefghijkmnpqrtwxyz")
+nolookalikes = toAlphabet "346789ABCDEFGHJKLMNPQRTUVWXYabcdefghijkmnpqrtwxyz"
 
 nolookalikesSafe :: Alphabet
-nolookalikesSafe = Alphabet (C.pack "6789ABCDEFGHJKLMNPQRTUWYabcdefghijkmnpqrtwyz")
+nolookalikesSafe = toAlphabet "6789ABCDEFGHJKLMNPQRTUWYabcdefghijkmnpqrtwyz"
 
