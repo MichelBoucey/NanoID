@@ -12,7 +12,7 @@ import           GHC.Generics
 import           Numeric.Natural
 import           System.Random.MWC
 
-newtype NanoID = NanoID { unNanoID :: C.ByteString } deriving (Eq,Generic)
+newtype NanoID = NanoID { unNanoID :: C.ByteString } deriving (Eq,Ord,Generic)
 
 newtype Alphabet = Alphabet { unAlphabet :: C.ByteString } deriving (Eq)
 
