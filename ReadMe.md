@@ -2,7 +2,7 @@
 
 ```
 [user@box ~] $ nanoid -h
-nanoid v2.1.0, (c) Michel Boucey 2021
+nanoid v3.2.0, (c) Michel Boucey 2022
 
 Usage: nanoid [-a|--alphabet ARG] [-l|--length ARG] [-q|--quantity ARG] 
               [-n|--newline]
@@ -10,7 +10,7 @@ Usage: nanoid [-a|--alphabet ARG] [-l|--length ARG] [-q|--quantity ARG]
 
 Available options:
   -a,--alphabet ARG        Use an alternative alphabet (ascii chars only)
-  -l,--length ARG          Get shorter NanoID
+  -l,--length ARG          Get a shorter NanoID (Default length is 21 chars)
   -q,--quantity ARG        Quantity of NanoID to generate
   -n,--newline             Do not output the trailing newline
   -h,--help                Show this help text
