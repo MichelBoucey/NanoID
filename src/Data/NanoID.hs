@@ -40,7 +40,7 @@ toAlphabet = Alphabet . C.pack
 -- | Standard 'NanoID' generator function
 --
 -- >λ: g <- createSystemRandom
--- >λ: NanoID g
+-- >λ: nanoID g
 -- >x2f8yFadIm-Vp14ByJ8R3
 --
 nanoID :: GenIO -> IO NanoID
