@@ -13,15 +13,16 @@ import           Options
 main :: IO ()
 main = do
   Options{..} <- execParser opts
-  if length < 1
+  if length < 1 || length > 21
     then strFail "nanoid length"
     else if quantity < 1
       then strFail "quantity"
-      else
+      else do
         replicateM_ quantity $
           createSystemRandom
             >>= customNanoID (toAlphabet alphabet) (toEnum length)
-            >>= putNanoID newline >> exitSuccess
+            >>= putNanoID newline
+        exitSuccess
   where
     strFail m = putStrLn ("Bad " <> m <> ". See help (-h).") >> exitFailure
     putNanoID nl = put nl . unNanoID
