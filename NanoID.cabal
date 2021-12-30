@@ -1,12 +1,12 @@
 name:                NanoID
-version:             3.1.1
+version:             3.2.0
 synopsis:            NanoID generator
 description:         Library and CLI tool for NanoID generation
 license:             BSD3
 license-file:        LICENSE
 author:              Michel Boucey
 maintainer:          michel.boucey@gmail.com
-copyright:           (c) 2021 - Michel Boucey
+copyright:           (c) 2021-2022 - Michel Boucey
 category:            Data
 build-type:          Simple
 cabal-version:       >=1.10

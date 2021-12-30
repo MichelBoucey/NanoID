@@ -16,7 +16,7 @@ opts :: ParserInfo Options
 opts = info (options <**> helper)
   ( fullDesc
     <> progDesc "NanoID generator"
-    <> header "nanoid v3.1.0, (c) Michel Boucey 2021" )
+    <> header "nanoid v3.2.0, (c) Michel Boucey 2022" )
 
 options :: Parser Options
 options =
@@ -31,7 +31,7 @@ options =
       option auto
         ( short 'l'
           <> long "length"
-          <> help "Default NanoID length is 21 chars"
+          <> help "Get a shorter NanoID (Default length is 21 chars)"
           <> value 21 )
     <*>
       option auto
