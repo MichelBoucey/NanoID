@@ -61,7 +61,7 @@ customNanoID a l g =
 defaultAlphabet :: Alphabet
 defaultAlphabet = toAlphabet "ABCDEFGHIJKLMNOPKRSTUVWXYZ_1234567890-abcdefghijklmnopqrstuvwxyz"
 
--- * Predefined Alphabets borrowed from https://github.com/CyberAP/nanoid-dictionary
+-- * Some predefined Alphabets, borrowed from https://github.com/CyberAP/nanoid-dictionary
 
 numbers :: Alphabet
 numbers = toAlphabet "1234567890"
