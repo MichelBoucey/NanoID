@@ -21,7 +21,7 @@ source-repository head
 library
   exposed-modules:     Data.NanoID
   build-depends:       aeson      >= 1.5.6 && < 1.6 || >= 2.0 && < 2.1
-                     , base       >= 4.7   && < 4.16
+                     , base       >= 4.7   && < 4.17
                      , bytestring >= 0.10  && < 0.12
                      , cereal     >= 0.5.8 && < 0.5.9
                      , extra      >= 1.6   && < 1.8
@@ -33,7 +33,7 @@ library
 executable nanoid
   main-is:             Main.hs
   other-modules:       Options
-  build-depends:       base                 >= 4.7  && < 4.16
+  build-depends:       base                 >= 4.7  && < 4.17
                      , bytestring           >= 0.10 && < 0.12
                      , mwc-random           >= 0.13 && < 0.16
                      , NanoID
