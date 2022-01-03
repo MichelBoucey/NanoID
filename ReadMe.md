@@ -1,5 +1,4 @@
-# NanoID generator, library and CLI tool [![Build Status](https://travis-ci.org/MichelBoucey/NanoID.svg?branch=main)](https://travis-ci.org/github/MichelBoucey/NanoID)
-
+# NanoID generator, library and CLI tool ![CI](https://github.com/MichelBoucey/NanoID/actions/workflows/haskell-ci.yml/badge.svg)
 ```
 [user@box ~] $ nanoid -h
 nanoid v3.2.0, (c) Michel Boucey 2022
