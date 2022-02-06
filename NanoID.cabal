@@ -37,7 +37,7 @@ executable nanoid
                      , bytestring           >= 0.10 && < 0.12
                      , mwc-random           >= 0.13 && < 0.16
                      , NanoID
-                     , optparse-applicative >= 0.14 && < 0.17
+                     , optparse-applicative >= 0.14 && < 0.18
   hs-source-dirs:      app
   default-language:    Haskell2010
 
