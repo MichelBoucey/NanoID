@@ -6,13 +6,13 @@ import           Control.Monad
 import           Data.Aeson
 import qualified Data.ByteString.Char8 as C
 import           Data.Maybe
-import           Data.Serialize        (Serialize)
+import           Data.Serialize             (Serialize)
 import           Data.Text.Encoding
 import           GHC.Generics
 import           Numeric.Natural
 import           System.Random.MWC
 
-newtype NanoID = NanoID { unNanoID :: C.ByteString } deriving (Eq,Generic)
+data NanoID = NanoID { unNanoID :: !C.ByteString } deriving (Eq, Generic)
 
 newtype Alphabet = Alphabet { unAlphabet :: C.ByteString } deriving (Eq)
 
