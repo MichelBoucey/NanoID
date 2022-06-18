@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP           #-}
 {-# LANGUAGE DeriveGeneric #-}
 
 module Data.NanoID where
@@ -6,7 +7,12 @@ import           Control.Monad
 import           Data.Aeson
 import qualified Data.ByteString.Char8 as C
 import           Data.Maybe
-import           Data.Serialize             (Serialize)
+
+#if !MIN_VERSION_base(4,11,0)
+import           Data.Monoid              ((<>))
+#endif
+
+import           Data.Serialize           (Serialize)
 import           Data.Text.Encoding
 import           GHC.Generics
 import           Numeric.Natural
