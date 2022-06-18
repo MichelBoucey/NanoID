@@ -1,5 +1,5 @@
 name:                NanoID
-version:             3.2.0
+version:             3.2.1
 synopsis:            NanoID generator
 description:         Library and CLI tool for NanoID generation
 license:             BSD3
@@ -12,7 +12,16 @@ build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  ReadMe.md
 
-Tested-With: GHC ==8.4.4 || ==8.6.5 || ==8.8.4 || ==8.10.7 || ==9.0.1 || ==9.2.1
+Tested-With:
+  GHC == 8.0.2
+   || == 8.2.2
+   || == 8.4.4
+   || == 8.6.5
+   || == 8.8.4
+   || == 8.10.7
+   || == 9.0.2
+   || == 9.2.3
+   || == 9.4.1
 
 source-repository head
   type:     git
@@ -20,7 +29,7 @@ source-repository head
 
 library
   exposed-modules:     Data.NanoID
-  build-depends:       aeson      >= 1.5.6 && < 1.6 || >= 2.0 && < 2.1
+  build-depends:       aeson      >= 1.5.6 && < 1.6 || >= 2.0 && < 2.2
                      , base       >= 4.7   && < 4.17
                      , bytestring >= 0.10  && < 0.12
                      , cereal     >= 0.5.8 && < 0.5.9
