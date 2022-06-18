@@ -1,6 +1,13 @@
+{-# LANGUAGE CPP #-}
+
 module Options where
 
 import qualified Data.ByteString.Char8 as C
+
+#if !MIN_VERSION_base(4,11,0)
+import           Data.Monoid              ((<>))
+#endif
+
 import           Data.NanoID
 import           Options.Applicative
 

@@ -1,6 +1,12 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE RecordWildCards #-}
 
 import           Control.Monad
+
+#if !MIN_VERSION_base(4,11,0)
+import           Data.Monoid              ((<>))
+#endif
+
 import qualified Data.ByteString.Char8 as C
 import           Data.Either
 import           Options.Applicative
