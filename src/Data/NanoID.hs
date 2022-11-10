@@ -18,9 +18,13 @@ import           GHC.Generics
 import           Numeric.Natural
 import           System.Random.MWC
 
-data NanoID = NanoID { unNanoID :: !C.ByteString } deriving (Eq, Generic)
+newtype NanoID =
+  NanoID { unNanoID :: C.ByteString }
+  deriving (Eq, Generic)
 
-newtype Alphabet = Alphabet { unAlphabet :: C.ByteString } deriving (Eq)
+newtype Alphabet =
+  Alphabet { unAlphabet :: C.ByteString }
+  deriving (Eq)
 
 type Length = Natural
 
@@ -45,8 +49,7 @@ toAlphabet = Alphabet . C.pack
 
 -- | Standard 'NanoID' generator function
 --
--- >λ: g <- createSystemRandom
--- >λ: nanoID g
+-- >λ: createSystemRandom >>= nanoID
 -- >x2f8yFadIm-Vp14ByJ8R3
 --
 nanoID :: GenIO -> IO NanoID
