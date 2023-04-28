@@ -1,15 +1,18 @@
-{-# LANGUAGE CPP #-}
+{-# LANGUAGE CPP             #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module Options where
 
 import qualified Data.ByteString.Char8 as C
 
 #if !MIN_VERSION_base(4,11,0)
-import           Data.Monoid              ((<>))
+import           Data.Monoid           ((<>))
 #endif
 
 import           Data.NanoID
+import           Data.Version          (showVersion)
 import           Options.Applicative
+import           Paths_NanoID          (version)
 
 data Options =
   Options
@@ -17,13 +20,16 @@ data Options =
     , length   :: Int
     , quantity :: Int
     , newline  :: Bool
+    , showver  :: Bool
     }
 
 opts :: ParserInfo Options
 opts = info (options <**> helper)
   ( fullDesc
     <> progDesc "NanoID generator"
-    <> header "nanoid v3.2.0, (c) Michel Boucey 2022" )
+    <> header ( "nanoid "
+                <> showVer
+                <> ", (c) Michel Boucey 2022-2023" ) )
 
 options :: Parser Options
 options =
@@ -51,4 +57,12 @@ options =
         ( short 'n'
           <> long "newline"
           <> help "Do not output the trailing newline" )
+    <*>
+      flag False True
+        ( short 'v'
+          <> long "version"
+          <> help "Show version" )
+
+showVer :: String
+showVer = "v" <> showVersion version
 
