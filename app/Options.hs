@@ -1,5 +1,4 @@
 {-# LANGUAGE CPP             #-}
-{-# LANGUAGE TemplateHaskell #-}
 
 module Options where
 

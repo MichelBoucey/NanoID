@@ -20,7 +20,7 @@ main :: IO ()
 main = do
   Options{..} <- execParser opts
   if showver
-    then putStrLn (showVer) >> exitFailure
+    then putStrLn showVer >> exitFailure
     else if length < 1 || length > 21
       then strFail "nanoid length"
     else if quantity < 1
