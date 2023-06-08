@@ -61,10 +61,12 @@ customNanoID :: Alphabet  -- ^ An 'Alphabet' of your choice
              -> GenIO     -- ^ The pseudo-random number generator state
              -> IO NanoID
 customNanoID a l g =
-  NanoID . C.pack <$> replicateM (fromEnum l) ((\r -> C.index ua (r-1)) <$> uniformR (1,al) g)
-  where
+  let
     ua = unAlphabet a
     al = C.length ua
+    l' = fromEnum l
+  in
+    NanoID . C.pack <$> replicateM l' ((\r -> C.index ua (r-1)) <$> uniformR (1,al) g)
 
 -- | The default 'Alphabet', made of URL-friendly symbols.
 defaultAlphabet :: Alphabet
