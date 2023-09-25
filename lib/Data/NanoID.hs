@@ -56,10 +56,11 @@ nanoID :: GenIO -> IO NanoID
 nanoID = customNanoID defaultAlphabet 21
 
 -- | Customable 'NanoID' generator function
-customNanoID :: Alphabet  -- ^ An 'Alphabet' of your choice
-             -> Length    -- ^ A 'NanoID' length (the standard length is 21 chars)
-             -> GenIO     -- ^ The pseudo-random number generator state
-             -> IO NanoID
+customNanoID
+  :: Alphabet  -- ^ An 'Alphabet' of your choice
+  -> Length    -- ^ A 'NanoID' length (the standard length is 21 chars)
+  -> GenIO     -- ^ The pseudo-random number generator state
+  -> IO NanoID
 customNanoID a l g =
   let
     ua = unAlphabet a
@@ -72,7 +73,7 @@ customNanoID a l g =
 defaultAlphabet :: Alphabet
 defaultAlphabet = toAlphabet "ABCDEFGHIJKLMNOPKRSTUVWXYZ_1234567890-abcdefghijklmnopqrstuvwxyz"
 
--- * Some predefined Alphabets, borrowed from https://github.com/CyberAP/nanoid-dictionary
+-- * Some predefined 'Alphabet's, borrowed from https://github.com/CyberAP/nanoid-dictionary
 
 numbers :: Alphabet
 numbers = toAlphabet "1234567890"
@@ -97,4 +98,9 @@ nolookalikes = toAlphabet "346789ABCDEFGHJKLMNPQRTUVWXYabcdefghijkmnpqrtwxyz"
 
 nolookalikesSafe :: Alphabet
 nolookalikesSafe = toAlphabet "6789ABCDEFGHJKLMNPQRTUWYabcdefghijkmnpqrtwyz"
+
+-- * Special password
+
+specialPassword :: Alphabet
+specialPassword = toAlphabet "67{8_9A!B>CDEF)GH=JKL(MNPQ%RTU]W.Ya@bc%def&g[hij}k<m#-npq:r+twyz"
 

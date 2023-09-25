@@ -26,9 +26,13 @@ main = do
     else if quantity < 1
       then strFail "quantity"
       else do
+        let alphabet' =
+              if password
+                then specialPassword
+                else toAlphabet alphabet
         replicateM_ quantity $
           createSystemRandom
-            >>= customNanoID (toAlphabet alphabet) (toEnum length)
+            >>= customNanoID alphabet' (toEnum length)
             >>= putNanoID newline
         exitSuccess
   where

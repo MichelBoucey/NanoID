@@ -17,6 +17,7 @@ data Options =
   Options
     { alphabet :: String
     , length   :: Int
+    , password :: Bool
     , quantity :: Int
     , newline  :: Bool
     , showver  :: Bool
@@ -45,6 +46,11 @@ options =
           <> long "length"
           <> help "Get a shorter NanoID (Default length is 21 chars)"
           <> value 21 )
+    <*>
+      flag False True
+        ( short 'p'
+          <> long "password"
+          <> help "Special password generation" )
     <*>
       option auto
         ( short 'q'
