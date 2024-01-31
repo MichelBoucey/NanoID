@@ -1,7 +1,8 @@
 # NanoID generator, library and CLI tool ![CI](https://github.com/MichelBoucey/NanoID/actions/workflows/haskell-ci.yml/badge.svg)
+
 ```
 [user@box ~] $ nanoid -h
-nanoid v3.4.0, (c) Michel Boucey 2022-2023
+nanoid v3.4.0.1, (c) Michel Boucey 2022-2024
 
 Usage: nanoid [-a|--alphabet ARG] [-l|--length ARG] [-p|--password] 
               [-q|--quantity ARG] [-n|--newline] [-v|--version]
