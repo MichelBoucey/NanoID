@@ -29,10 +29,10 @@ newtype Alphabet =
 type Length = Natural
 
 instance Show NanoID where
-  show n = C.unpack (unNanoID n)
+  show = C.unpack . unNanoID
 
 instance Show Alphabet where
-  show a = C.unpack (unAlphabet a)
+  show = C.unpack . unAlphabet
 
 instance ToJSON NanoID where
   toJSON n = String (decodeUtf8 $ unNanoID n)
