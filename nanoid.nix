@@ -3,8 +3,8 @@
 }:
 mkDerivation {
   pname = "NanoID";
-  version = "3.4.0.1";
-  sha256 = "43785ef712a39c1b03e66b332d405083f95034a082494de871d0099d798c62bc";
+  version = "3.4.0.2";
+  src = ./.;
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [
