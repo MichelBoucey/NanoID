@@ -1,4 +1,4 @@
-# NanoID generator, library and CLI tool ![CI](https://github.com/MichelBoucey/NanoID/actions/workflows/haskell-ci.yml/badge.svg) [![Hackage](https://img.shields.io/hackage/v/NanoID.svg)](https://hackage.haskell.org/package/NanoID)
+# NanoID generator, library and CLI ![CI](https://github.com/MichelBoucey/NanoID/actions/workflows/haskell-ci.yml/badge.svg) [![Hackage](https://img.shields.io/hackage/v/NanoID.svg)](https://hackage.haskell.org/package/NanoID)
 
 ```
 [user@box ~] $ nanoid -h
