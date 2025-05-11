@@ -29,7 +29,7 @@ opts = info (options <**> helper)
     <> progDesc "NanoID generator"
     <> header ( "nanoid "
                 <> showVer
-                <> ", (c) Michel Boucey 2022-2023" ) )
+                <> ", (c) Michel Boucey 2022-2025" ) )
 
 options :: Parser Options
 options =
