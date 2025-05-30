@@ -2,7 +2,7 @@
 
 ```
 [user@box ~] $ nanoid -h
-nanoid v3.4.0.2, (c) Michel Boucey 2022-2024
+nanoid v3.4.1, (c) Michel Boucey 2022-2025
 
 Usage: nanoid [-a|--alphabet ARG] [-l|--length ARG] [-p|--password] 
               [-q|--quantity ARG] [-n|--newline] [-v|--version]
