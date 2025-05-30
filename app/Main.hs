@@ -1,14 +1,15 @@
 {-# LANGUAGE CPP             #-}
+{-# LANGUAGE MultiWayIf      #-}
 {-# LANGUAGE RecordWildCards #-}
 
 import           Control.Monad
 
 #if !MIN_VERSION_base(4,11,0)
-import           Data.Monoid           ((<>))
+import           Data.Monoid                    ((<>))
 #endif
 
-import qualified Data.ByteString.Char8 as C
-import           Data.Either
+import qualified Data.ByteString.Char8          as C
+import           Data.ByteString.Internal.Ascii
 import           Options.Applicative
 import           System.Exit
 import           System.Random.MWC
@@ -26,15 +27,17 @@ main = do
     else if quantity < 1
       then strFail "quantity"
       else do
-        let alphabet' =
-              if password
-                then specialPassword
-                else toAlphabet alphabet
-        replicateM_ quantity $
-          createSystemRandom
-            >>= customNanoID alphabet' (toEnum length)
-            >>= putNanoID newline
-        exitSuccess
+        let mAlphabet =
+              if | password                               -> Just specialPassword
+                 | alphabet == unAlphabet defaultAlphabet -> Just defaultAlphabet
+                 | isAscii alphabet                       -> Just (Alphabet alphabet)
+                 | otherwise                              -> Nothing
+        case mAlphabet of
+          Just a -> do
+            replicateM_ quantity $
+              createSystemRandom >>= customNanoID a (toEnum length) >>= putNanoID newline
+            exitSuccess
+          Nothing -> strFail "alphabet that is not made of ascii chars only"
   where
     strFail m = putStrLn ("Bad " <> m <> ". See help (-h).") >> exitFailure
     putNanoID nl = put nl . unNanoID
