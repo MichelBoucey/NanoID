@@ -15,7 +15,7 @@ import           Paths_NanoID          (version)
 
 data Options =
   Options
-    { alphabet :: String
+    { alphabet :: C.ByteString
     , length   :: Int
     , password :: Bool
     , quantity :: Int
@@ -39,7 +39,7 @@ options =
         ( short 'a'
           <> long "alphabet"
           <> help "Use an alternative alphabet (ascii chars only)"
-          <> value (C.unpack $ unAlphabet defaultAlphabet) )
+          <> value (unAlphabet defaultAlphabet))
     <*>
       option auto
         ( short 'l'
