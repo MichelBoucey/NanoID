@@ -11,6 +11,7 @@ import           Data.Monoid                    ((<>))
 import qualified Data.ByteString.Char8          as C
 import           Data.ByteString.Internal.Ascii
 import           Options.Applicative
+import           Prelude                        hiding (length)
 import           System.Exit
 import           System.Random.MWC
 
@@ -41,5 +42,5 @@ main = do
   where
     strFail m = putStrLn ("Bad " <> m <> ". See help (-h).") >> exitFailure
     putNanoID nl = put nl . unNanoID
-      where put nl = if nl then C.putStrLn else C.putStr
+      where put nl' = if nl' then C.putStrLn else C.putStr
 
