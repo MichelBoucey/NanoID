@@ -35,8 +35,9 @@ main = do
                  | otherwise                              -> Nothing
         case mAlphabet of
           Just a -> do
+            g <- createSystemRandom
             replicateM_ quantity $
-              createSystemRandom >>= customNanoID a (toEnum length) >>= putNanoID newline
+              customNanoID a (toEnum length) g >>= putNanoID newline
             exitSuccess
           Nothing -> strFail "alphabet that is not made of ascii chars only"
   where
