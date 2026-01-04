@@ -71,7 +71,7 @@ customNanoID a l g =
 
 -- | The default 'Alphabet', made of URL-friendly symbols.
 defaultAlphabet :: Alphabet
-defaultAlphabet = toAlphabet "ABCDEFGHIJKLMNOPKRSTUVWXYZ_1234567890-abcdefghijklmnopqrstuvwxyz"
+defaultAlphabet = toAlphabet "ABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890-abcdefghijklmnopqrstuvwxyz"
 
 -- * Some predefined 'Alphabet's, borrowed from https://github.com/CyberAP/nanoid-dictionary
 
